@@ -1,15 +1,8 @@
-# Welcome to your CDK TypeScript project
-
-This is a blank project for CDK development with TypeScript.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
 # dynamodb_lambda
+
+This repo allows you to deploy a CDK stack with a Lambda which is triggered by API Gateway which then writes to a DynamoDB table. 
+
+The lambda produces a UUID for each item it stores, so each successive trigger will record a new item, each with its own unique ID and timestamps for 'created' and 'updated'. 
+
+The REST API can be triggered by running curl -i and the API Gateway Endpoint produced at the point of deployment to AWS.
+
