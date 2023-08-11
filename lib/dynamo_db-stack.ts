@@ -1,6 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as dynamodb from '@aws-cdk/aws-dynamodb';
+import * as apigw from '@aws-cdk/aws-apigateway';
 
 export class DynamoDbStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -21,5 +22,9 @@ export class DynamoDbStack extends cdk.Stack {
     });
 
     table.grantReadWriteData(payments);
+
+    new apigw.LambdaRestApi(this, 'Endpoint', {
+      handler: payments,
+    });
   }
 }

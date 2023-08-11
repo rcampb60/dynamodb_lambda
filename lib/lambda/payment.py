@@ -8,7 +8,7 @@ dynamo_db = boto3.resource('dynamodb')
 table = dynamo_db.Table(os.environ['PAYMENT_TABLE_NAME'])
 
 def handler(event, context):
-    payment_id = str(1)
+    payment_id = str(uuid.uuid4())
     p_status = 'Failed'
     c_timestamp = str(datetime.now())
     u_timestamp = str(datetime.now())
@@ -19,4 +19,3 @@ def handler(event, context):
         'Created Time': c_timestamp,
         'Updated Time': u_timestamp,
     })
-
